@@ -15,7 +15,6 @@ public class Foods {
         this.calories = fat * 9 + carbs * 4 + protein * 4;
     }
 
-
     // Getters
     public String getName() {
         return name;
@@ -29,16 +28,13 @@ public class Foods {
         return fat;
     }
 
-
     public int getCarbs() {
         return carbs;
     }
 
-
     public int getProtein() {
         return protein;
     }
-
 
     // Setters
     public void setName(String name) {
@@ -60,7 +56,6 @@ public class Foods {
     public void setCalories(int calories) {
         this.calories = calories;
     }
-
 
     public void printFood() {
         System.out.println("Name: " + getName());

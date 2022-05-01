@@ -4,8 +4,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        // Add foods to array infinity list
-        ArrayList<Foods> foodList = new ArrayList<Foods>();
+        ArrayList<Foods> foodList = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
         boolean sorted = false;
         int choice = 0;
@@ -21,9 +20,8 @@ public class Main {
             System.out.println("7. Exit");
             System.out.println("Enter your choice: ");
             choice = scanner.nextInt();
-            // If choice is not a number print error
             if (choice < 1 || choice > 7) {
-                System.out.println("Error! You need to enter a number between 1 and 5");
+                System.out.println("Error! You need to enter a number between 1 and 7!");
                 continue;
             }
             switch (choice) {
@@ -107,9 +105,13 @@ public class Main {
                     String fileName = scanner.next();
                     SaveToFile(foodList, fileName);
                     break;
+                case 7:
+                    System.out.println("Goodbye!");
+                    break;
+                default:
+                    System.out.println("Invalid input!");
             }
         }
-
     }
 
     public static void SaveToFile(ArrayList<Foods> foodList, String fileName) {
@@ -117,16 +119,8 @@ public class Main {
         try {
             String fullName = fileName + ".json";
             File file = new File(fullName);
-            // Create file if not exists
-            if (!file.exists()) {
-                file.createNewFile();
-            }
-
-            // Create file writer
             FileWriter fileWriter = new FileWriter(file);
-            // Create buffered writer
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-            // Write to file
             bufferedWriter.write("{" + '"' + "food_list" + '"' + ":[");
             for (Foods food : foodList) {
                 // Jsonify food
@@ -145,11 +139,12 @@ public class Main {
             bufferedWriter.write("]}");
             // Close buffered writer
             bufferedWriter.close();
-            System.out.println("File saved!");
+            System.out.println("Foods saved to file '" + fileName + "' successfully!\n\n");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 
     public static String JsonifyStringName(String key, String value) {
         return '"' + key + '"' + ":" + '"' + value + '"' + ",";
