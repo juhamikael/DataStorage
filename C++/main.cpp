@@ -1,18 +1,19 @@
-#include <iostream>
 #include "Foods.h"
-#include <bits/stdc++.h>
-#include <algorithm>
-
-// Constructor
-Foods AddNewFood();
-
-string StringToLower(string input);
-
-int checkInputErrors();
-
+#include "Funcs.h"
 
 int main() {
     vector<Foods *> foods;
+
+    // Adding placeholder data////////
+    cout << "-----------------------\nAdding placeholder data to vector\n";
+    foods.push_back(new Foods("Jauheliha", 20, 0, 10));
+    foods.push_back(new Foods("Kana", 18, 0, 0));
+    foods.push_back(new Foods("Kala", 20, 0, 20));
+    foods.push_back(new Foods("Suklaa", 11, 49, 33));
+    cout << foods.size() << " foods added \n-----------------------\n\n\n";
+    // ////////
+
+    // Global Variables
     string nameToRemove;
     string nameToSearch;
     bool foodFound = false;
@@ -21,14 +22,6 @@ int main() {
     string newFoodName;
     int newValue;
 
-    // ////////
-    cout << "-----------------------\nAdding placeholder data to vector\n";
-    foods.push_back(new Foods("Jauheliha", 20, 0, 10));
-    foods.push_back(new Foods("Kana", 18, 0, 0));
-    foods.push_back(new Foods("Kala", 20, 0, 20));
-    foods.push_back(new Foods("Suklaa", 11, 49, 33));
-
-    cout << foods.size() << " foods added \n-----------------------\n\n\n";
 
     cout << "Welcome to the food database!\n";
     do {
@@ -147,38 +140,3 @@ int main() {
     } while (choice != 7);
 }
 
-Foods AddNewFood() {
-    string name;
-    int protein;
-    int carbs;
-    int fat;
-    cout << "Name:";
-    cin >> name;
-    cout << "Protein:";
-    cin >> protein;
-    cout << "Carbs:";
-    cin >> carbs;
-    cout << "Fat:";
-    cin >> fat;
-    return {name, protein, carbs, fat};
-}
-
-string StringToLower(string input) {
-    string newInput = input;
-    transform(newInput.begin(), newInput.end(), newInput.begin(), ::tolower);
-    return newInput;
-}
-
-int checkInputErrors() {
-    int choice = 0;
-    cout << "Enter your choice:";
-    cin >> choice;
-    while (!cin.good()) {
-        cout << "\nInvalid input, try again...\n\n";
-        cin.clear();
-        cin.ignore(INT_MAX, '\n');
-        cout << "Enter your choice:\n";
-        cin >> choice;
-    }
-    return choice;
-}
