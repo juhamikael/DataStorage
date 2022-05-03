@@ -1,9 +1,15 @@
 #include <iostream>
 #include "Foods.h"
 #include <bits/stdc++.h>
+#include <algorithm>
 
 // Constructor
 Foods AddNewFood();
+
+string StringToLower(string input);
+
+int checkInputErrors();
+
 
 int main() {
     vector<Foods *> foods;
@@ -35,8 +41,8 @@ int main() {
                 "6. Change details of food\n"
                 "7. Exit\n";
 
-        cout << "Enter your choice:";
-        cin >> choice;
+        choice = checkInputErrors();
+
         switch (choice) {
             case 1:
                 foods.push_back(new Foods(AddNewFood()));
@@ -61,9 +67,10 @@ int main() {
             case 4:
                 cout << "Enter food name to search: ";
                 cin >> nameToSearch;
+                nameToSearch = StringToLower(nameToSearch);
                 // Iterate through vector and get index if found
                 for (int i = 0; i < foods.size(); i++) {
-                    if (foods[i]->getName() == nameToSearch) {
+                    if (StringToLower(foods[i]->getName()) == nameToSearch) {
                         cout << "\nFood with name '" << foods[i]->getName() << "' found!";
                         foods[i]->printFood();
                         foodFound = true;
@@ -82,8 +89,9 @@ int main() {
             case 6:
                 cout << "Enter food name search: ";
                 cin >> nameToSearch;
+                nameToSearch = StringToLower(nameToSearch);
                 for (int i = 0; i < foods.size(); i++) {
-                    if (foods[i]->getName() == nameToSearch) {
+                    if (StringToLower(foods[i]->getName()) == nameToSearch ) {
                         cout << "\nFood with name '" << foods[i]->getName() << "' found!\n";
                         foodFound = true;
                         do {
@@ -93,7 +101,7 @@ int main() {
                                     "4. Change food fat value\n"
                                     "5. Print food values\n"
                                     "6. Go back to main menu\n";
-                            cin >> setChangeFoodChoice;
+                            setChangeFoodChoice = checkInputErrors();
                             switch (setChangeFoodChoice) {
                                 case 1:
                                     cout << "Give new name:\n";
@@ -134,7 +142,7 @@ int main() {
                 cout << "Exiting...\n";
                 break;
             default:
-                cout << "Invalid input" << endl;
+                cout << "Invalid input, try again..." << endl;
         }
     } while (choice != 7);
 }
@@ -153,4 +161,24 @@ Foods AddNewFood() {
     cout << "Fat:";
     cin >> fat;
     return {name, protein, carbs, fat};
+}
+
+string StringToLower(string input) {
+    string newInput = input;
+    transform(newInput.begin(), newInput.end(), newInput.begin(), ::tolower);
+    return newInput;
+}
+
+int checkInputErrors() {
+    int choice = 0;
+    cout << "Enter your choice:";
+    cin >> choice;
+    while (!cin.good()) {
+        cout << "\nInvalid input, try again...\n\n";
+        cin.clear();
+        cin.ignore(INT_MAX, '\n');
+        cout << "Enter your choice:\n";
+        cin >> choice;
+    }
+    return choice;
 }
