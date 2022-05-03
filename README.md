@@ -22,6 +22,6 @@ All the data are stored in vector
 3. Print all foods
 4. Search for food
 5. Sort foods by calories
-6. Change details of food (Name, protein, carbs, fat)
+6. Change details of food **_(Name, protein, carbs, fat)_**
 7. Exit
 
