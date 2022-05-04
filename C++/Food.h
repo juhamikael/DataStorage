@@ -28,7 +28,7 @@ public:
     void setProtein(int aProtein);
     void setCarbs(int aCarbs);
     void setFat(int aFat);
-    void printFood();
+    void printFood() const;
 private:
     string mName;
     int mProtein;
