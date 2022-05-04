@@ -96,17 +96,17 @@ int main() {
                                     break;
                                 case 2:
                                     cout << "Give new Protein value:\n";
-                                    cin >> newValue;
+                                    newValue = checkInputErrors();
                                     i->setProtein(newValue);
                                     break;
                                 case 3:
                                     cout << "Give new Carb value:\n";
-                                    cin >> newValue;
+                                    newValue = checkInputErrors();
                                     i->setCarbs(newValue);
                                     break;
                                 case 4:
                                     cout << "Give new Fat value:\n";
-                                    cin >> newValue;
+                                    newValue = checkInputErrors();
                                     i->setFat(newValue);
                                     break;
                                 case 5:
