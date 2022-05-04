@@ -1,9 +1,3 @@
-//
-// Created by Juha on 02/05/2022.
-//
-
-#ifndef DATASTORAGE_CPP_FOODS_H
-#define DATASTORAGE_CPP_FOODS_H
 #include <iostream>
 #include <string>
 #include <vector>
@@ -39,7 +33,3 @@ private:
 
     void setCalories();
 };
-
-
-
-#endif //DATASTORAGE_CPP_FOODS_H
