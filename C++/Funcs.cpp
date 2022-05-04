@@ -1,6 +1,8 @@
 #include "Funcs.h"
 
 Food AddNewFood() {
+// This function supposed to be function to add hide couts and cins when adding new food to the list
+// But this is calling destructor of Food class, so ignoring this for now
     string name;
     cout << "Name:";
     cin >> name;

@@ -33,7 +33,16 @@ int main() {
         choice = checkInputErrors();
         switch (choice) {
             case 1:
-                foods.push_back(make_unique<Food>(AddNewFood()));
+                cout << "Name:";
+                cin >> name;
+                cout << "Protein:";
+                protein = checkInputErrors();
+                cout << "Carbs:";
+                carbs = checkInputErrors();
+                cout << "Fat:";
+                fat = checkInputErrors();
+                foods.push_back(make_shared<Food>(name, protein, carbs, fat));
+                singleton->updateFoods(foods.size());
                 break;
             case 2:
                 cout << "Enter food name to remove: ";
