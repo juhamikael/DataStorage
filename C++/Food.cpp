@@ -1,7 +1,3 @@
-//
-// Created by Juha on 02/05/2022.
-//
-
 #include "Food.h"
 
 
@@ -60,7 +56,7 @@ void Food::setCalories(){
     this->mCalories = (mProtein * 4) + (mCarbs * 4) + (mFat * 9);
 }
 
-void Food::printFood() {
+void Food::printFood() const {
     cout << "\n-------\n";
     cout << "Name: " << getName() << endl;
     cout << "Protein: " << getProtein() << endl;
