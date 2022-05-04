@@ -1,7 +1,7 @@
-#include "Foods.h"
+#include "Food.h"
 #include <algorithm>
 
 // Constructor
-Foods AddNewFood();
+Food AddNewFood();
 string StringToLower(string input);
 int checkInputErrors();

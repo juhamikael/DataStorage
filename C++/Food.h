@@ -15,11 +15,11 @@ using std::endl;
 using std::vector;
 
 
-class Foods {
+class Food {
 public:
-    Foods();
-    Foods(string aName, int aProtein,int aCarbs, int aFat);
-    ~Foods();
+    Food();
+    Food(string aName, int aProtein, int aCarbs, int aFat);
+    ~Food();
     string getName() const;
     int getProtein() const;
     int getCarbs() const;

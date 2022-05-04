@@ -2,65 +2,65 @@
 // Created by Juha on 02/05/2022.
 //
 
-#include "Foods.h"
+#include "Food.h"
 
 
-Foods::Foods() : mName("None"), mProtein(0), mCarbs(0), mFat(0) {
-    cout << "Foods default constructor called\n";
+Food::Food() : mName("None"), mProtein(0), mCarbs(0), mFat(0) {
+    cout << "Food default constructor called\n";
 }
 
-Foods::Foods(string aName, int aProtein, int aCarbs, int aFat)
+Food::Food(string aName, int aProtein, int aCarbs, int aFat)
         : mName(aName), mProtein(aProtein), mCarbs(aCarbs), mFat(aFat) {
-    cout << "Foods 4 parameter constructor called with name: '" << mName << "'\n";
+    cout << "Food 4 parameter constructor called with name: '" << mName << "'\n";
 }
 
-Foods::~Foods() {
-    cout << "Foods destructor called and food with name: '" << mName << "' deleted\n";
+Food::~Food() {
+    cout << "Food destructor called and food with name: '" << mName << "' deleted\n";
 }
 
-string Foods::getName() const {
+string Food::getName() const {
     return mName;
 }
 
-int Foods::getProtein() const {
+int Food::getProtein() const {
     return mProtein;
 }
 
-int Foods::getCarbs() const {
+int Food::getCarbs() const {
     return mCarbs;
 }
 
-int Foods::getFat() const {
+int Food::getFat() const {
     return mFat;
 }
 
-int Foods::getCalories() const {
+int Food::getCalories() const {
     return mCalories;
 }
 
-void Foods::setName(string aName) {
+void Food::setName(string aName) {
     this->mName = aName;
 }
 
-void Foods::setProtein(int aProtein) {
+void Food::setProtein(int aProtein) {
     this->mProtein = aProtein;
     this->setCalories();
 }
 
-void Foods::setCarbs(int aCarbs) {
+void Food::setCarbs(int aCarbs) {
     this->mCarbs = aCarbs;
     this->setCalories();
 }
 
-void Foods::setFat(int aFat) {
+void Food::setFat(int aFat) {
     this->mFat = aFat;
     this->setCalories();
 }
-void Foods::setCalories(){
+void Food::setCalories(){
     this->mCalories = (mProtein * 4) + (mCarbs * 4) + (mFat * 9);
 }
 
-void Foods::printFood() {
+void Food::printFood() {
     cout << "\n-------\n";
     cout << "Name: " << getName() << endl;
     cout << "Protein: " << getProtein() << endl;

@@ -1,17 +1,15 @@
 #include "Funcs.h"
-Foods AddNewFood() {
+
+Food AddNewFood() {
     string name;
-    int protein;
-    int carbs;
-    int fat;
     cout << "Name:";
     cin >> name;
     cout << "Protein:";
-    cin >> protein;
+    int protein = checkInputErrors();
     cout << "Carbs:";
-    cin >> carbs;
+    int carbs = checkInputErrors();
     cout << "Fat:";
-    cin >> fat;
+    int fat = checkInputErrors();
     return {name, protein, carbs, fat};
 }
 
@@ -23,13 +21,12 @@ string StringToLower(string input) {
 
 int checkInputErrors() {
     int choice = 0;
-    cout << "Enter your choice:";
     cin >> choice;
     while (!cin.good()) {
-        cout << "\nInvalid input, try again...\n\n";
+        cout << "\nInvalid input, try again...\n";
         cin.clear();
         cin.ignore(INT_MAX, '\n');
-        cout << "Enter your choice:\n";
+        cout << "Try using number:";
         cin >> choice;
     }
     return choice;
