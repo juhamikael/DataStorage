@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <memory>
+#pragma once
 
 using std::string;
 using std::cin;
