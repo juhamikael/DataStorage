@@ -39,7 +39,9 @@ int main() {
                 cout << "Enter food name to remove: ";
                 cin >> nameToRemove;
                 for (auto &i: foods) {
-                    if (i->getName() == nameToRemove) {
+                    if (StringToLower(i->getName())== nameToRemove) {
+                        foodFoundStatus = true;
+                        foodFoundNotification(foodFoundStatus, nameToRemove);
                         foods.erase(find(foods.begin(), foods.end(), i));
                         foodFound = true;
                         break;
@@ -61,14 +63,14 @@ int main() {
                 // Iterate through vector and get index if found
                 for (auto &i: foods) {
                     if (StringToLower(i->getName()) == nameToSearch) {
-                        foodFound = true;
-                        cout << "Food with name '" << i->getName() << "' found!\n";
+                        foodFoundStatus = true;
+                        foodFoundNotification(foodFoundStatus, nameToSearch);
                         i->printFood();
                         break;
                     }
                 }
-                foodNotFound(foodFound, nameToRemove);
-                foodFound = false;
+                foodFoundNotification(foodFoundStatus, nameToSearch);
+                foodFoundStatus = false;
                 break;
             case 5:
                 sort(foods.begin(), foods.end(), [](const unique_ptr<Food> &a, const unique_ptr<Food> &b) {
@@ -81,8 +83,8 @@ int main() {
                 nameToSearch = StringToLower(nameToSearch);
                 for (auto &i: foods) {
                     if (StringToLower(i->getName()) == nameToSearch) {
-                        cout << "\nFood with name '" << i->getName() << "' found!\n";
-                        foodFound = true;
+                        foodFoundStatus = true;
+                        foodFoundNotification(foodFoundStatus, nameToSearch);
                         do {
                             printChoiceMenu(2);
                             setChangeFoodChoice = checkInputErrors();
@@ -117,8 +119,8 @@ int main() {
                         } while (setChangeFoodChoice != 6);
                     }
                 }
-                foodNotFound(foodFound, nameToRemove);
-                foodFound = false;
+                foodFoundNotification(foodFoundStatus, nameToRemove);
+                foodFoundStatus = false;
                 break;
             case 7:
                 foods.clear();
