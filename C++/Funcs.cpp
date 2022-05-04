@@ -22,16 +22,16 @@ string StringToLower(string input) {
 }
 
 int checkInputErrors() {
-    int choice = 0;
-    cin >> choice;
+    int value = 0;
+    cin >> value;
     while (!cin.good()) {
         cout << "\nInvalid input, try again...\n";
         cin.clear();
         cin.ignore(INT_MAX, '\n');
         cout << "Try using number:";
-        cin >> choice;
+        cin >> value;
     }
-    return choice;
+    return value;
 }
 
 void printChoiceMenu(int menu) {
@@ -55,8 +55,10 @@ void printChoiceMenu(int menu) {
     }
 }
 
-void foodNotFound(bool found, const string &name) {
-    if (!found) {
+void foodFoundNotification(bool found, const string &name) {
+    if (found) {
+        cout << "Food with name '" << name << "' found!\n";
+    } else {
         cout << "\nFood with name '" << name << "' not found! :(\n\n";
     }
 }
