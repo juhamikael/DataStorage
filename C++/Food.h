@@ -1,12 +1,17 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <memory>
 
 using std::string;
 using std::cin;
 using std::cout;
 using std::endl;
 using std::vector;
+using std::shared_ptr;
+using std::make_shared;
+using std::unique_ptr;
+using std::make_unique;
 
 
 class Food {
