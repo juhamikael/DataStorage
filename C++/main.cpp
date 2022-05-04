@@ -1,29 +1,38 @@
 #include "Food.h"
 #include "Funcs.h"
+#include "FoodSingleton.h"
 
 int main() {
-    vector<unique_ptr<Food>> foods;
-
-    // Adding placeholder data/////////
-    // ////////////////////////////////
-    cout << "-----------------------\nAdding placeholder data to vector\n";
-    foods.push_back(make_unique<Food>("Jauheliha", 20, 0, 10));
-    foods.push_back(make_unique<Food>("Kana", 18, 0, 0));
-    foods.push_back(make_unique<Food>("Kala", 20, 0, 20));
-    foods.push_back(make_unique<Food>("Suklaa", 11, 49, 33));
-    cout << foods.size() << " foods added \n-----------------------\n\n\n";
-    // ////////////////////////////////
-
+    vector<shared_ptr<Food>> foods;
+    FoodSingleton *singleton = FoodSingleton::getInstance();
     // ////////////////////////////////
     // Global Variables
     string nameToRemove;
     string nameToSearch;
-    bool foodFound = false;
+    bool foodFoundStatus = false;
     int choice;
     int setChangeFoodChoice;
     string newFoodName;
     int newValue;
+    string name;
+    int protein;
+    int fat;
+    int carbs;
+
+
     // ////////////////////////////////
+
+    // Adding placeholder data/////////
+    // ////////////////////////////////
+    cout << "-----------------------\nAdding placeholder data to vector\n";
+    foods.push_back(make_shared<Food>("Jauheliha", 20, 0, 10));
+    foods.push_back(make_shared<Food>("Kana", 18, 0, 0));
+    foods.push_back(make_shared<Food>("Kala", 20, 0, 20));
+    foods.push_back(make_shared<Food>("Suklaa", 11, 49, 33));
+    singleton->updateFoods(foods.size());
+    cout << singleton->getFoods() << " foods added \n-----------------------\n\n\n";
+    // ////////////////////////////////
+
 
     // ////////////////////////////////
     // Start of program
@@ -47,29 +56,35 @@ int main() {
             case 2:
                 cout << "Enter food name to remove: ";
                 cin >> nameToRemove;
+                // Ignore case sensitivity and change name & nameToRemove to lowercase
+                nameToRemove = StringToLower(nameToRemove);
                 for (auto &i: foods) {
                     if (StringToLower(i->getName())== nameToRemove) {
                         foodFoundStatus = true;
                         foodFoundNotification(foodFoundStatus, nameToRemove);
                         foods.erase(find(foods.begin(), foods.end(), i));
-                        foodFound = true;
                         break;
                     }
                 }
-                foodNotFound(foodFound, nameToRemove);
-                foodFound = false;
+                // Changing foodFoundStatus to false before breaking case 2
+                singleton->updateFoods(foods.size());
+                foodFoundStatus = false;
                 break;
             case 3:
-                cout << "\n\n-------\nFood found: " << foods.size() << "\n-------";
+                cout << "\n\n-------\nFoods found: " << singleton->getFoods() << "\n-------";
                 for (auto &&food: foods) {
                     food->printFood();
+                }
+                if (singleton->getFoods() == 0) {
+                    foods.clear();
+                    cout << "\nFOOD-LIST IS EMPTY\n";
+                    break;
                 }
                 break;
             case 4:
                 cout << "Enter food name to search: ";
                 cin >> nameToSearch;
                 nameToSearch = StringToLower(nameToSearch);
-                // Iterate through vector and get index if found
                 for (auto &i: foods) {
                     if (StringToLower(i->getName()) == nameToSearch) {
                         foodFoundStatus = true;
@@ -82,9 +97,10 @@ int main() {
                 foodFoundStatus = false;
                 break;
             case 5:
-                sort(foods.begin(), foods.end(), [](const unique_ptr<Food> &a, const unique_ptr<Food> &b) {
+                sort(foods.begin(), foods.end(), [](const shared_ptr<Food> &a, const shared_ptr<Food> &b) {
                     return a->getCalories() < b->getCalories();
                 });
+                cout << "\n Foods sorted\n";
                 break;
             case 6:
                 cout << "Enter food name search: ";
